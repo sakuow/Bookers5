@@ -13,6 +13,16 @@
             <th><%= user.introduction %></th>
           </tr>
           <tr>
+            <th>follows</th>
+            <th><%= link_to user.relationships.count, user_followings_path(user) %></th>
+          </tr>
+          <tr>
+            <th>followers</th>
+            <th><%= link_to user.reverse_of_relationships.count, user_followers_path(user) %></th>
+          </tr>
+
+
+          <tr>
             <% if current_user == user %>
             <% else %>
               <% if current_user.following?(user) %>
