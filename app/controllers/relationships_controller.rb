@@ -1,8 +1,10 @@
 class RelationshipsController < ApplicationController
 
   def create
-    currrent_user.follow(params[:user_id])
-    redierct_to request.referer
+    @user = User.find(params[:user_id])
+    follow = current_user.follow(@user)
+    follow.save
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
